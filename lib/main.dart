@@ -13,7 +13,7 @@ class MyApp2 extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "実践演習アプリ",
       home: MyHome());
   }
@@ -39,7 +39,7 @@ class _MyHomeState extends State<MyHome> {
         appBar: AppBar(
 
           //<h1>的な感じ
-          title: Text("実践演習アプリ", style: TextStyle(fontSize: 40),),
+          title: const Text("実践演習アプリ", style: TextStyle(fontSize: 40),),
           centerTitle: true,
         ),
 
@@ -50,7 +50,7 @@ class _MyHomeState extends State<MyHome> {
               count = 0
             );
           }, 
-          child: Icon(Icons.airport_shuttle_outlined)),
+          child: const Icon(Icons.airport_shuttle_outlined)),
 
         //ボディー開始
         body: Column(
@@ -58,29 +58,21 @@ class _MyHomeState extends State<MyHome> {
           children: [
 
             //カウント値表示
-            Text("$count", style: TextStyle(fontSize: 140)),
+            Text("$count", style: const TextStyle(fontSize: 140)),
 
             //カウント値と2進数間にスペース設置
-            SizedBox(height: 50,),
+            const SizedBox(height: 50,),
 
             //２進数表記
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BinDigit(value: count, digit: 7),
-                BinDigit(value: count, digit: 6),
-                BinDigit(value: count, digit: 5),
-                BinDigit(value: count, digit: 4),
-                BinDigit(value: count, digit: 3),
-                BinDigit(value: count, digit: 2),
-                BinDigit(value: count, digit: 1),
-                BinDigit(value: count, digit: 0),
-                
-              ],
+              children: ([7,6,5,4,3,2,1,0].map((i){
+                return BinDigit(value: count, digit: i);
+              })).toList()
             ),
 
             //2進数とボタン間にスペース設置
-            SizedBox(height: 90,),
+            const SizedBox(height: 90,),
 
             //増減ボタン作成
             Row(
@@ -123,6 +115,6 @@ class BinDigit extends StatelessWidget {
   Widget build(BuildContext context) {
       return Text((value & (1 << digit) != 0) ? "1" : "0",
       //2進数表記の数字を大きくする
-      style:TextStyle(fontSize: 28));
+      style:TextStyle(fontSize: 40));
   }
 }
