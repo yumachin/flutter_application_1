@@ -67,14 +67,15 @@ class _MyHomeState extends State<MyHome> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                BinDigit(),
-                BinDigit(),
-                BinDigit(),
-                BinDigit(),
-                BinDigit(),
-                BinDigit(),
-                BinDigit(),
-                BinDigit()
+                BinDigit(value: count, digit: 7),
+                BinDigit(value: count, digit: 6),
+                BinDigit(value: count, digit: 5),
+                BinDigit(value: count, digit: 4),
+                BinDigit(value: count, digit: 3),
+                BinDigit(value: count, digit: 2),
+                BinDigit(value: count, digit: 1),
+                BinDigit(value: count, digit: 0),
+                
               ],
             ),
 
@@ -114,14 +115,14 @@ class _MyHomeState extends State<MyHome> {
 
 
 class BinDigit extends StatelessWidget {
-  const BinDigit({super.key});
+  final int value;
+  final int digit;
+  const BinDigit({super.key, required this.value, required this.digit});
+
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "0",
-
+      return Text((value & (1 << digit) != 0) ? "1" : "0",
       //2進数表記の数字を大きくする
-      style: TextStyle(fontSize: 40),
-    );
+      style:TextStyle(fontSize: 28));
   }
 }
